@@ -7,7 +7,8 @@ Parâmetros:
   - **container_height**: Altura do container
   - **container_x**: Posição x do container
   - **container_y**: Posição y do container
-  - **margin**: Margem entre a imagem e o container, considere que em qualquer um dos eixos haverá margem * 2 (esquerda e direita ou cima e baixo)
+  - **image_margin**: Margem entre a imagem e o container, considere que em qualquer um dos eixos haverá margem * 2 (esquerda e direita ou cima e baixo)
+  - **pdf_margin**: Margem do arquivo PDF
 
 Exemplo de uso:
 ```python
