@@ -1,18 +1,20 @@
 from fpdf import svg
 from PIL import Image
 
-def center_image(pdf_obj, img_path, container_width, container_height, container_x=0, container_y=0, margin=0):
+def center_image(pdf_obj, img_path, container_width=0, container_height=0, container_x=0, container_y=0, margin=0):
     '''
         Centraliza a imagem no container, por padrão o tamanho da imagem será aumentado/diminuído para caber no container,
         se a imagem tiver a mesma proporção do container a imagem ficará do mesmo tamanho do container menos a margem.
 
         param pdf_obj: Objeto pdf FPDF
         param img_path: Caminho da imagem
-        param container_width: Largura do container
-        param container_height: Altura do container
+        param container_width: Largura do container, se não for informado, será usada a largura do PDF
+        param container_height: Altura do container, se não for informado, será usada a largura do PDF
         param container_x: Posição x do container
         param container_y: Posição y do container
         param margin: Margem entre a imagem e o container, considere que em qualquer um dos eixos haverá margem * 2 (esquerda e direita ou cima e baixo)
+
+        example: center_image(pdf_obj, 'img.png', 100, 100, 0, 0, 10)
 
         raise ValueError: Se a margem for menor que 0
 
@@ -24,6 +26,7 @@ def center_image(pdf_obj, img_path, container_width, container_height, container
         }
     '''
     container_width = pdf_obj.w - (pdf_obj.margin * 2) if container_width == 0 else container_width       # Se o container for 0, ele pega o tamanho da página menos a margem
+    container_height = pdf_obj.h - pdf_obj.margin if container_height == 0 else container_height    # Se o container for 0, ele pega o tamanho da página menos a margem
 
     if margin < 0:
         raise ValueError('A margem não pode ser menor que 0')
